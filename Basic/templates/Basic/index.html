@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+ 
+    <title>Aditya's Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'Basic/logo.jpg' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Basic/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Aditya's Portfolio</h1>
+    </header>
+    
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            {% for skill in skills %}
+                <li>
+                    <h3>{{ skill.name }}</h3>
+                    <p>{{ skill.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+            {% for project in projects %}
+                <li>
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    <section id="experience">
+        <h2>Experience</h2>
+        <ul>
+            {% for exp in experiences %}
+                <li>
+                    <h3>{{ exp.title }}</h3>
+                    <p>{{ exp.company }}</p>
+                    <p>{{ exp.description }}</p>
+                    <p>{{ exp.start_date }} - {% if exp.end_date %}{{ exp.end_date }}{% else %}Present{% endif %}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    <section id="social-links">
+        <h2>Social Links</h2>
+        <ul>
+            {% for link in social_links %}
+                <li>
+                    <a href="{{ link.link }}">{{ link.name }}</a>
+                    {% if link.image %}
+                        <img src="{{ link.image }}" alt="{{ link.name }}">
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    <section id="education">
+        <h2>Education</h2>
+        <ul>
+            {% for edu in education %}
+                <li>
+                    <h3>{{ edu.institution }}</h3>
+                    <p>{{ edu.degree }} in {{ edu.field_of_study }}</p>
+                    <p>{{ edu.start_date }} - {{ edu.end_date }}</p>
+                    {% if edu.document %}
+                        <a href="{{ edu.document }}">View Certificate</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    <section id="achievements">
+        <h2>Achievements</h2>
+        <ul>
+            {% for achievement in achievements %}
+                <li>
+                    <h3>{{ achievement.name }}</h3>
+                    <p>{{ achievement.description }}</p>
+                    <p>Achievement Date: {{ achievement.achievement_date }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    <footer>
+        <p>&copy; {{ year }} Aditya's Portfolio</p>
+    </footer>
+</body>
+</html>
